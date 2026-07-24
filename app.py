@@ -83,6 +83,12 @@ with col2:
     MCH = st.number_input("MCH", value=30.0)
     MCHC = st.number_input("MCHC", value=33.0)
     RDW = st.number_input("RDW", value=13.0)
+    with col3:
+    Neutrophils = st.number_input("Neutrophils", value=60.0)
+    Lymphocytes = st.number_input("Lymphocytes", value=30.0)
+    Monocytes = st.number_input("Monocytes", value=5.0)
+    Eosinophils = st.number_input("Eosinophils", value=3.0)
+    Basophils = st.number_input("Basophils", value=1.0)
     # ==========================================
 # PREDICTION
 # ==========================================
@@ -126,10 +132,3 @@ if st.button("🔍 Predict Disease"):
     st.info(
         f"Confidence: {confidence:.2f}%"
     )
-
-with col3:
-    Neutrophils = st.number_input("Neutrophils", value=60.0)
-    Lymphocytes = st.number_input("Lymphocytes", value=30.0)
-    Monocytes = st.number_input("Monocytes", value=5.0)
-    Eosinophils = st.number_input("Eosinophils", value=3.0)
-    Basophils = st.number_input("Basophils", value=1.0)
