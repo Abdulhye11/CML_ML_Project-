@@ -83,6 +83,49 @@ with col2:
     MCH = st.number_input("MCH", value=30.0)
     MCHC = st.number_input("MCHC", value=33.0)
     RDW = st.number_input("RDW", value=13.0)
+    # ==========================================
+# PREDICTION
+# ==========================================
+
+st.divider()
+
+if st.button("🔍 Predict Disease"):
+
+    input_data = pd.DataFrame(
+        [[
+            age,
+            gender_value,
+            WBC,
+            RBC,
+            Hemoglobin,
+            Hematocrit,
+            Platelets,
+            MCV,
+            MCH,
+            MCHC,
+            RDW,
+            Neutrophils,
+            Lymphocytes,
+            Monocytes,
+            Eosinophils,
+            Basophils
+        ]],
+        columns=feature_names
+    )
+
+    prediction = model.predict(input_data)[0]
+
+    probability = model.predict_proba(input_data)[0]
+
+    confidence = probability.max() * 100
+
+    disease = label_mapping[prediction]
+
+    st.success(f"Prediction: {disease}")
+
+    st.info(
+        f"Confidence: {confidence:.2f}%"
+    )
 
 with col3:
     Neutrophils = st.number_input("Neutrophils", value=60.0)
