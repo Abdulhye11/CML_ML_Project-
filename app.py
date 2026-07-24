@@ -174,17 +174,3 @@ if st.button("🔍 Predict Disease"):
         ),
         use_container_width=True
     )
-    st.success(f"Prediction: {disease}")
-
-    st.info(
-    f"Confidence: {confidence:.2f}%"
-)
-
-if confidence < 70:
-    st.warning(
-        "Low confidence prediction. Please interpret results carefully and consult a healthcare professional."
-    )
-else:
-    st.success(
-        "The model shows a strong pattern match."
-    )
