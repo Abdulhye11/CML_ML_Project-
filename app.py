@@ -173,10 +173,24 @@ if st.button("🔍 Predict Disease"):
 
     disease = label_mapping[prediction]
 
-    st.success(f"Prediction: {disease}")
+    col1, col2, col3 = st.columns(3)
 
-    st.info(
-        f"Confidence: {confidence:.2f}%"
+with col1:
+    st.metric(
+        "🩸 Prediction",
+        disease
+    )
+
+with col2:
+    st.metric(
+        "🎯 Confidence",
+        f"{confidence:.2f}%"
+    )
+
+with col3:
+    st.metric(
+        "🤖 Model",
+        "Random Forest"
     )
 
     if confidence < 70:
