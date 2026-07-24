@@ -93,12 +93,14 @@ age = st.sidebar.number_input(
     max_value=100,
     value=40
 )
+
 gender = st.sidebar.selectbox(
     "Gender",
     ["Male", "Female"]
 )
 
 gender_value = 1 if gender == "Male" else 0
+
 severity = st.sidebar.number_input(
     "Severity Score",
     min_value=0.0,
