@@ -85,7 +85,7 @@ st.divider()
 # PATIENT INFORMATION
 # ==========================================
 
-st.header("👤 Patient Information")
+st.sidebar.header("👤 Patient Information")
 
 col1, col2 = st.columns(2)
 
