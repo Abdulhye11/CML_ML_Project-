@@ -12,6 +12,43 @@ st.set_page_config(
     page_icon="🩸",
     layout="wide"
 )
+st.markdown("""
+<style>
+
+/* Main background */
+.stApp{
+    background-color:#F7FAFC;
+}
+
+/* Buttons */
+.stButton > button{
+    width:100%;
+    background:#1565C0;
+    color:white;
+    border:none;
+    border-radius:10px;
+    height:50px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Input boxes */
+.stNumberInput,
+.stSelectbox{
+    background:white;
+}
+
+/* Headers */
+h1{
+    color:#1565C0;
+}
+
+h2{
+    color:#0D47A1;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ==========================================
 # LOAD MODEL FILES
@@ -30,7 +67,11 @@ model, feature_names, label_mapping = load_resources()
 # HEADER
 # ==========================================
 
-st.title("🩸 Early Screening of Chronic Myeloid Leukemia")
+st.title("🩸 AI-Based CML Screening System")
+
+st.caption(
+    "Machine Learning Based Early Detection using Complete Blood Count (CBC)"
+)
 
 st.markdown("""
 This application predicts possible blood disorders using **Complete Blood Count (CBC)** parameters and a trained **Random Forest** model.
@@ -173,18 +214,4 @@ if st.button("🔍 Predict Disease"):
             {"Probability (%)": "{:.2f}"}
         ),
         use_container_width=True
-    )
-    st.success(f"Prediction: {disease}")
-
-    st.info(
-    f"Confidence: {confidence:.2f}%"
-)
-
-if confidence < 70:
-    st.warning(
-        "Low confidence prediction. Please interpret results carefully and consult a healthcare professional."
-    )
-else:
-    st.success(
-        "The model shows a strong pattern match."
     )
