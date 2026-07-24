@@ -87,24 +87,18 @@ st.divider()
 
 st.sidebar.header("👤 Patient Information")
 
-col1, col2 = st.columns(2)
-
-with col1:
-    age = st.number_input(
-        "Age",
-        min_value=1,
-        max_value=100,
-        value=40
-    )
-
-with col2:
-    gender = st.selectbox(
-        "Gender",
-        ["Male", "Female"]
-    )
+age = st.sidebar.number_input(
+    "Age",
+    min_value=1,
+    max_value=100,
+    value=40
+)gender = st.sidebar.selectbox(
+    "Gender",
+    ["Male", "Female"]
+)
 
 gender_value = 1 if gender == "Male" else 0
-severity = st.number_input(
+severity = st.sidebar.number_input(
     "Severity Score",
     min_value=0.0,
     max_value=1.0,
