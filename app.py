@@ -134,6 +134,30 @@ if st.button("🔍 Predict Disease"):
     confidence = probability.max() * 100
 
     disease = label_mapping[prediction]
+    # ==========================================
+# PROBABILITY DISPLAY
+# ==========================================
+
+st.subheader("Prediction Probability")
+
+probability_df = pd.DataFrame(
+    {
+        "Disease": label_mapping.values(),
+        "Probability (%)": probability * 100
+    }
+)
+
+probability_df = probability_df.sort_values(
+    by="Probability (%)",
+    ascending=False
+)
+
+st.dataframe(
+    probability_df.style.format(
+        {"Probability (%)": "{:.2f}"}
+    ),
+    use_container_width=True
+)
 
     st.success(f"Prediction: {disease}")
 
