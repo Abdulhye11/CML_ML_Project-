@@ -96,7 +96,7 @@ with col3:
     Monocytes = st.number_input("Monocytes", value=5.0)
     Eosinophils = st.number_input("Eosinophils", value=3.0)
     Basophils = st.number_input("Basophils", value=1.0)
-    # ==========================================
+# ==========================================
 # PREDICTION
 # ==========================================
 
