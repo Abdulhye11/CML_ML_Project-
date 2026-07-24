@@ -92,7 +92,8 @@ age = st.sidebar.number_input(
     min_value=1,
     max_value=100,
     value=40
-)gender = st.sidebar.selectbox(
+)
+gender = st.sidebar.selectbox(
     "Gender",
     ["Male", "Female"]
 )
