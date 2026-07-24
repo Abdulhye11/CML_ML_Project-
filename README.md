@@ -140,20 +140,6 @@ The application provides:
 * Predicted disease
 * Prediction confidence (%)
 * Probability distribution across all disease classes
-
----
-
-# 📷 Screenshots
-
-Add screenshots here after deployment.
-
-Example:
-
-```
-screenshots/homepage.png
-screenshots/prediction.png
-```
-
 ---
 
 # 📌 Future Improvements
