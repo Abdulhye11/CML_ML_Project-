@@ -1,4 +1,4 @@
-import plotly.express as px
+
 import streamlit as st
 import pandas as pd
 import joblib
@@ -12,43 +12,6 @@ st.set_page_config(
     page_icon="🩸",
     layout="wide"
 )
-st.markdown("""
-<style>
-
-/* Main background */
-.stApp{
-    background-color:#F7FAFC;
-}
-
-/* Buttons */
-.stButton > button{
-    width:100%;
-    background:#1565C0;
-    color:white;
-    border:none;
-    border-radius:10px;
-    height:50px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-/* Input boxes */
-.stNumberInput,
-.stSelectbox{
-    background:white;
-}
-
-/* Headers */
-h1{
-    color:#1565C0;
-}
-
-h2{
-    color:#0D47A1;
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 # ==========================================
 # LOAD MODEL FILES
@@ -67,11 +30,7 @@ model, feature_names, label_mapping = load_resources()
 # HEADER
 # ==========================================
 
-st.title("🩸 AI-Based CML Screening System")
-
-st.caption(
-    "Machine Learning Based Early Detection using Complete Blood Count (CBC)"
-)
+st.title("🩸 Early Screening of Chronic Myeloid Leukemia")
 
 st.markdown("""
 This application predicts possible blood disorders using **Complete Blood Count (CBC)** parameters and a trained **Random Forest** model.
@@ -85,23 +44,26 @@ st.divider()
 # PATIENT INFORMATION
 # ==========================================
 
-st.sidebar.header("👤 Patient Information")
+st.header("👤 Patient Information")
 
-age = st.sidebar.number_input(
-    "Age",
-    min_value=1,
-    max_value=100,
-    value=40
-)
+col1, col2 = st.columns(2)
 
-gender = st.sidebar.selectbox(
-    "Gender",
-    ["Male", "Female"]
-)
+with col1:
+    age = st.number_input(
+        "Age",
+        min_value=1,
+        max_value=100,
+        value=40
+    )
+
+with col2:
+    gender = st.selectbox(
+        "Gender",
+        ["Male", "Female"]
+    )
 
 gender_value = 1 if gender == "Male" else 0
-
-severity = st.sidebar.number_input(
+severity = st.number_input(
     "Severity Score",
     min_value=0.0,
     max_value=1.0,
@@ -173,24 +135,10 @@ if st.button("🔍 Predict Disease"):
 
     disease = label_mapping[prediction]
 
-    col1, col2, col3 = st.columns(3)
+    st.success(f"Prediction: {disease}")
 
-with col1:
-    st.metric(
-        "🩸 Prediction",
-        disease
-    )
-
-with col2:
-    st.metric(
-        "🎯 Confidence",
-        f"{confidence:.2f}%"
-    )
-
-with col3:
-    st.metric(
-        "🤖 Model",
-        "Random Forest"
+    st.info(
+        f"Confidence: {confidence:.2f}%"
     )
 
     if confidence < 70:
@@ -226,35 +174,17 @@ with col3:
         ),
         use_container_width=True
     )
-    st.subheader("📊 Prediction Probability Chart")
+    st.success(f"Prediction: {disease}")
 
-fig = px.bar(
-    probability_df,
-    x="Disease",
-    y="Probability (%)",
-    text="Probability (%)",
-    color_discrete_sequence=["#1565C0"]
+    st.info(
+    f"Confidence: {confidence:.2f}%"
 )
 
-fig.update_traces(
-    texttemplate="%{text:.2f}%",
-    textposition="outside"
-)
-
-fig.update_layout(
-    title="Prediction Probability",
-    xaxis_title="Disease",
-    yaxis_title="Probability (%)",
-    showlegend=False,
-    height=450
-)
-
-st.plotly_chart(fig, use_container_width=True)
-fig.update_layout(
-    xaxis_title="Disease",
-    yaxis_title="Probability (%)",
-    showlegend=False,
-    height=450
-)
-
-st.plotly_chart(fig, use_container_width=True)
+if confidence < 70:
+    st.warning(
+        "Low confidence prediction. Please interpret results carefully and consult a healthcare professional."
+    )
+else:
+    st.success(
+        "The model shows a strong pattern match."
+    )
