@@ -159,8 +159,6 @@ The application provides:
 
 **Abdul Hye**
 
-Machine Learning | Data Science | Artificial Intelligence | WordPress Developer | SEO Specialist
-
 GitHub: https://github.com/Abdulhye11/CML_ML_Project-
 
 
