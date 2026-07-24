@@ -226,3 +226,24 @@ with col3:
         ),
         use_container_width=True
     )
+    st.subheader("📊 Prediction Probability Chart")
+
+fig = px.bar(
+    probability_df,
+    x="Disease",
+    y="Probability (%)",
+    text="Probability (%)",
+    color_discrete_sequence=["#1565C0"]
+fig.update_traces(
+    texttemplate="%{text:.2f}%",
+    textposition="outside"
+)
+
+fig.update_layout(
+    xaxis_title="Disease",
+    yaxis_title="Probability (%)",
+    showlegend=False,
+    height=450
+)
+
+st.plotly_chart(fig, use_container_width=True)
